@@ -1,0 +1,483 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Canada) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENC)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_CAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,9,9,2
+ PRODUCTVERSION 0,9,9,2
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x2bL
+#else
+ FILEFLAGS 0x2aL
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "100904b0"
+        BEGIN
+            VALUE "Comments", " \0"
+            VALUE "CompanyName", "Chris Lundie\0"
+            VALUE "FileDescription", "Fwink\0"
+            VALUE "FileVersion", "0, 9, 9, 2\0"
+            VALUE "InternalName", "fwink\0"
+            VALUE "LegalCopyright", "Copyright © 2001-2004 Chris Lundie\0"
+            VALUE "LegalTrademarks", " \0"
+            VALUE "OriginalFilename", "fwink.exe\0"
+            VALUE "PrivateBuild", " \0"
+            VALUE "ProductName", "Fwink\0"
+            VALUE "ProductVersion", "0, 9, 9, 2\0"
+            VALUE "SpecialBuild", " \0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x1009, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOGEX 0, 0, 250, 154
+STYLE DS_MODALFRAME | DS_CENTER | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_STATICEDGE
+CAPTION "Fwink"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Status:",IDC_STATIC,12,6,24,12,SS_CENTERIMAGE | NOT 
+                    WS_GROUP
+    LTEXT           "Ready",IDC_STATUS,36,6,204,12,SS_CENTERIMAGE | NOT 
+                    WS_GROUP
+    GROUPBOX        "Preview",IDC_STATIC,12,24,120,102
+    CONTROL         "",IDC_PREVIEW,"Static",SS_GRAYRECT | SS_CENTERIMAGE,24,
+                    42,96,72
+    PUSHBUTTON      "&Settings...",IDC_BTNSETTINGS,144,30,96,18
+    PUSHBUTTON      "Take a &Picture Now",IDC_BTNCAPTURE,144,54,96,18
+    PUSHBUTTON      "Fwink &Home Page",IDC_BTNHOMEPAGE,144,78,96,18
+    PUSHBUTTON      "E&xit",IDC_BTNEXIT,144,102,96,18
+    CTEXT           "Fwink 0.9.9.2 Copyright © 2001-2005 Chris Lundie",
+                    IDC_STATIC,12,138,228,12,SS_CENTERIMAGE | SS_SUNKEN
+END
+
+IDD_FTP DIALOG DISCARDABLE  0, 0, 322, 197
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "File Transfer"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "FTP Settings",IDC_STATIC,12,12,150,174
+    LTEXT           "FTP &Server:",IDC_STATIC,24,30,45,12,SS_CENTERIMAGE | 
+                    NOT WS_GROUP
+    EDITTEXT        IDC_FTPSERVER,72,30,78,12,ES_AUTOHSCROLL
+    LTEXT           "&User Name:",IDC_STATIC,24,48,42,12,SS_CENTERIMAGE | 
+                    NOT WS_GROUP
+    EDITTEXT        IDC_USERNAME,72,48,78,12,ES_AUTOHSCROLL
+    LTEXT           "&Password:",IDC_STATIC,24,66,42,12,SS_CENTERIMAGE | NOT 
+                    WS_GROUP
+    EDITTEXT        IDC_PASSWORD,72,66,78,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "&Directory:",IDC_STATIC,24,84,45,12,SS_CENTERIMAGE | 
+                    NOT WS_GROUP
+    EDITTEXT        IDC_DIRECTORY,72,84,78,12,ES_AUTOHSCROLL
+    LTEXT           "File &Name:",IDC_STATIC,24,102,45,12,SS_CENTERIMAGE | 
+                    NOT WS_GROUP
+    EDITTEXT        IDC_FILENAME,72,102,78,12,ES_AUTOHSCROLL
+    CONTROL         "I use a dial-up &modem",IDC_DIALUP,"Button",
+                    BS_AUTOCHECKBOX | BS_VCENTER | WS_TABSTOP,24,120,90,12
+    CONTROL         "Use P&assive FTP\n(necessary for some firewalls)",
+                    IDC_PASSIVEFTP,"Button",BS_AUTOCHECKBOX | BS_VCENTER | 
+                    BS_MULTILINE | WS_TABSTOP,24,138,126,20
+    CONTROL         "Disable FTP",IDC_DISABLEFTP,"Button",BS_AUTOCHECKBOX | 
+                    BS_VCENTER | WS_TABSTOP,24,162,126,12
+    GROUPBOX        "Timing",IDC_STATIC,168,12,144,90
+    LTEXT           "&Capture an image every:",IDC_STATIC,180,30,96,12,NOT 
+                    WS_GROUP
+    EDITTEXT        IDC_TIMEVALUE,180,42,30,12,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_SPINTIME,"msctls_updown32",UDS_WRAP | 
+                    UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS,210,42,
+                    11,12
+    COMBOBOX        IDC_TIMEUNIT,228,42,72,66,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Disable Timer",IDC_DISABLETIMER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,180,60,66,12
+    CONTROL         "Start Fwink when I &log on to my computer",
+                    IDC_RUNATSTARTUP,"Button",BS_AUTOCHECKBOX | BS_VCENTER | 
+                    BS_MULTILINE | WS_TABSTOP,180,72,96,24
+    GROUPBOX        "Save To File",IDC_STATIC,168,108,144,78
+    CONTROL         "Save images to a &file:",IDC_SAVETOFILE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,180,126,120,12
+    EDITTEXT        IDC_LOCALFILENAME,180,138,120,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Open File",IDC_OPENFILE,198,156,48,12
+    PUSHBUTTON      "&Browse...",IDC_FILEBROWSE,252,156,48,12
+END
+
+IDD_VIDEO DIALOGEX 0, 0, 298, 215
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Video Capture"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Device Settings",IDC_STATIC,6,6,138,132
+    LTEXT           "Video &Source:",IDC_STATIC,18,24,90,12,SS_CENTERIMAGE
+    COMBOBOX        IDC_VIDEOSOURCE,18,37,114,101,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&TV Tuner Controls...",IDC_BTNTVTUNER,18,60,90,18
+    PUSHBUTTON      "Image &Controls...",IDC_BTNVIDCAPPROPERTIES,18,84,90,18
+    PUSHBUTTON      "Video &Format...",IDC_BTNVIDEOFORMAT,18,108,90,18
+    GROUPBOX        "Crop Captured Image",IDC_STATIC,6,144,138,66
+    CONTROL         "Enable Cropping",IDC_CROP_ENABLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,156,84,12
+    LTEXT           "Left:",IDC_STATIC,12,174,18,12,SS_CENTERIMAGE
+    EDITTEXT        IDC_CROP_X,36,174,30,12,ES_AUTOHSCROLL
+    LTEXT           "Top:",IDC_STATIC,72,174,18,12,SS_CENTERIMAGE
+    EDITTEXT        IDC_CROP_Y,96,174,30,12,ES_AUTOHSCROLL
+    LTEXT           "Width:",IDC_STATIC,12,192,24,12,SS_CENTERIMAGE
+    EDITTEXT        IDC_CROP_WIDTH,36,192,30,12,ES_AUTOHSCROLL
+    LTEXT           "Height:",IDC_STATIC,72,192,24,12,SS_CENTERIMAGE
+    EDITTEXT        IDC_CROP_HEIGHT,96,192,30,12,ES_AUTOHSCROLL
+    GROUPBOX        "Resize Captured Image",IDC_STATIC,150,6,138,96
+    CONTROL         "Standard Size:",IDC_RADIOSTDSIZE,"Button",
+                    BS_AUTORADIOBUTTON,156,24,102,12,WS_EX_TRANSPARENT
+    COMBOBOX        IDC_IMAGESIZE,168,42,108,60,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Custom Size:",IDC_RADIOCUSTOMSIZE,"Button",
+                    BS_AUTORADIOBUTTON,156,60,102,12,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_CUSTOMSIZEX,180,78,30,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CUSTOMSIZEY,240,78,30,12,ES_AUTOHSCROLL
+    GROUPBOX        "Image Processing",IDC_STATIC,150,108,138,90
+    CONTROL         "Flip &Horizontally",IDC_FLIPHORIZONTAL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,162,126,96,12
+    CONTROL         "Flip &Vertically",IDC_FLIPVERTICAL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,162,138,96,12
+    LTEXT           "JPEG &Quality:",IDC_STATIC,162,155,84,12,SS_CENTERIMAGE
+    LTEXT           "Low",IDC_STATIC,162,169,36,12,SS_CENTERIMAGE
+    RTEXT           "High",IDC_STATIC,252,169,24,12,SS_CENTERIMAGE
+    CONTROL         "Slider1",IDC_JPEGQUALITY,"msctls_trackbar32",
+                    TBS_AUTOTICKS | WS_TABSTOP,162,179,114,12
+    LTEXT           "Width:",IDC_STATIC,156,78,24,12,SS_CENTERIMAGE
+    LTEXT           "Height:",IDC_STATIC,216,78,24,12,SS_CENTERIMAGE
+END
+
+IDD_EFFECTS DIALOG DISCARDABLE  0, 0, 334, 215
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Text Effects"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "&Message",IDC_STATIC,12,12,126,84
+    EDITTEXT        IDC_WISDOM,24,30,102,24,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_WANTRETURN | WS_VSCROLL
+    CONTROL         "Da&te",IDC_DATESTAMP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,24,60,36,12
+    CONTROL         "Tim&e",IDC_TIMESTAMP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,66,60,36,12
+    LTEXT           "&Position:",IDC_STATIC,24,78,30,12,SS_CENTERIMAGE
+    COMBOBOX        IDC_TEXTPOSITION,54,78,72,126,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Font Smoothing",IDC_STATIC,12,102,126,54
+    CONTROL         "None",IDC_SMOOTHNONE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,24,120,54,12
+    CONTROL         "Standard",IDC_SMOOTHSTANDARD,"Button",
+                    BS_AUTORADIOBUTTON,24,132,54,12
+    CONTROL         "ClearType",IDC_SMOOTHCLEARTYPE,"Button",
+                    BS_AUTORADIOBUTTON,78,120,54,12
+    GROUPBOX        "Font Selection",IDC_STATIC,144,12,180,84
+    LTEXT           "&Name:",IDC_STATIC,156,24,66,12,SS_CENTERIMAGE
+    COMBOBOX        IDC_FONTLIST,156,36,156,168,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Size:",IDC_STATIC,156,54,66,12,SS_CENTERIMAGE
+    EDITTEXT        IDC_FONTSIZE,156,66,24,12,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_SPINFONTSIZE,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS,180,66,
+                    11,12
+    LTEXT           "pixels",IDC_STATIC,198,66,30,12,SS_CENTERIMAGE
+    GROUPBOX        "Font Style",IDC_STATIC,144,102,180,54
+    CONTROL         "&Bold",IDC_FONTBOLD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,156,120,48,12
+    CONTROL         "&Underline",IDC_FONTUNDERLINE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,156,132,48,12
+    CONTROL         "&Italic",IDC_FONTITALIC,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,210,120,42,12
+    CONTROL         "St&rikeout",IDC_FONTSTRIKEOUT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,210,132,42,12
+    CONTROL         "&Drop Shadow",IDC_FONTSHADOW,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,258,120,60,12
+    GROUPBOX        "Font Colour",IDC_STATIC,12,162,312,48
+    CTEXT           "Sample Text",IDC_SAMPLETEXT,24,180,66,18,SS_CENTERIMAGE | 
+                    WS_BORDER
+    PUSHBUTTON      "&Foreground...",IDC_BTNFGCOLOUR,102,180,54,18
+    PUSHBUTTON      "B&ackground...",IDC_BTNBGCOLOUR,168,180,54,18
+    LTEXT           "Backgroun&d Style:",IDC_STATIC,228,174,84,12,
+                    SS_CENTERIMAGE
+    COMBOBOX        IDC_BGSTYLE,228,186,84,72,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+END
+
+IDD_OVERLAY DIALOG DISCARDABLE  0, 0, 334, 215
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Overlay"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Preview",IDC_STATIC,6,6,186,150
+    CONTROL         "",IDC_OVERLAY_PREVIEW_FRAME,"Static",SS_OWNERDRAW,18,24,
+                    162,120
+    LTEXT           "Overlay &Image:",IDC_STATIC,204,12,60,12,SS_CENTERIMAGE
+    EDITTEXT        IDC_OVERLAYFILENAME,204,25,120,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Clear",IDC_OVERLAYFILE_CLEAR,234,42,42,14
+    PUSHBUTTON      "&Browse...",IDC_FILEBROWSE_OVERLAY,282,42,42,14
+    GROUPBOX        "&Scale",IDC_STATIC,204,66,120,78
+    CONTROL         "Original Size",IDC_OVLSCALE_ORIGINAL,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,216,84,60,12
+    CONTROL         "Best Fit",IDC_OVLSCALE_BESTFIT,"Button",
+                    BS_AUTORADIOBUTTON,216,96,54,12
+    CONTROL         "Percentage:",IDC_OVLSCALE_PERCENT,"Button",
+                    BS_AUTORADIOBUTTON,216,108,60,12
+    LTEXT           "%",IDC_STATIC,294,108,8,12,SS_CENTERIMAGE
+    CONTROL         "Slider1",IDC_OVLSCALE_SLIDER,"msctls_trackbar32",
+                    TBS_AUTOTICKS | WS_TABSTOP,228,123,78,12
+    GROUPBOX        "Transparency",IDC_STATIC,6,162,186,48
+    LTEXT           "Op&acity:",IDC_STATIC,18,174,30,12,SS_CENTERIMAGE
+    LTEXT           "%",IDC_STATIC,66,174,8,12,SS_CENTERIMAGE
+    CONTROL         "Slider2",IDC_OVLOPACITY_SLIDER,"msctls_trackbar32",
+                    TBS_AUTOTICKS | WS_TABSTOP,18,189,60,12
+    CONTROL         "Colour &Key",IDC_OVLKEY_CHK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,90,174,60,12
+    PUSHBUTTON      "Choose &Colour...",IDC_OVLKEY_CHOOSE,90,189,57,14
+    GROUPBOX        "&Position",IDC_STATIC,204,150,120,60
+    COMBOBOX        IDC_OVLPOS_LIST,216,168,96,12,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "",IDC_OVLKEY_STATIC,156,174,24,30,WS_BORDER | NOT 
+                    WS_GROUP
+    LTEXT           "100",IDC_OVLOPACITY_EDIT,48,174,18,12,SS_CENTERIMAGE
+    LTEXT           "100",IDC_OVLSCALE_EDIT,276,108,18,12,SS_CENTERIMAGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 243
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 147
+    END
+
+    IDD_FTP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 315
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 190
+    END
+
+    IDD_VIDEO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 291
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 208
+    END
+
+    IDD_EFFECTS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 327
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 208
+    END
+
+    IDD_OVERLAY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 327
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 208
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_APPICON             ICON    DISCARDABLE     "icon1.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// 24
+//
+
+1                       24      DISCARDABLE     "fwink.exe.manifest"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_OVERLAYPREVIEW      BITMAP  DISCARDABLE     "overlaypreview.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_IDLE                "Fwink"
+    ERR_UNKNOWN             "An unexpected error occurred. Try restarting Fwink. If the problem persists, try restarting your computer."
+    ERR_CAPCONNECT          "Your camera is not responding. It may be in use by another application, or it is not connected to your computer."
+    ERR_CREATEICON          "Failed to create the notification icon. Try restarting Fwink. If the problem persists, try restarting your computer."
+    ERR_WNDCLASS            "Failed to create the main window. Try restarting Fwink. If the problem persists, try restarting your computer."
+    ERR_CREATEPREVIEWWINDOW "Failed to create the preview window. Try restarting Fwink. If the problem persists, try restarting your computer."
+    ERR_CREATEMAINWINDOW    "Failed to create the main window. Try restarting Fwink. If the problem persists, try restarting your computer."
+    ERR_NOCAMERA            "There are no cameras connected to your computer."
+    ERR_GDIPLUSSTARTUP      "Could not start GDI+"
+    ERR_CAPTURE             "Error: Unable to take a picture."
+    ERR_CONNECT             "Error: Cannot connect to the FTP server."
+    SUCCESS_UPLOADED_IMAGE  "Image uploaded successfully."
+    IDS_SECONDS             "Seconds"
+    IDS_MINUTES             "Minutes"
+    IDS_HOURS               "Hours"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    STATUS_CONNECTING       "Connecting to FTP server..."
+    STATUS_UPLOADING        "Uploading image to FTP server..."
+    STATUS_CHDIR            "Changing directory on FTP server..."
+    ERR_UPLOAD              "Could not upload image to FTP server."
+    ERR_INTERNETOPEN        "Failed to open your Internet connection."
+    ERR_UPLOAD_DIRECTORY    "Could not upload image: directory does not exist."
+    ERR_BALLOONTITLE        "Fwink Error"
+    ERR_COINIT              "An unexpected error occurred. Try restarting Fwink. If the problem persists, try restarting your computer."
+    ERR_CREATEGRAPHBUILDER  "cannot create filter graph manager"
+    ERR_CREATEVIDEORENDERER "cannot create video renderer"
+    ERR_ADDVIDEORENDERER    "cannot add video renderer to filter graph"
+    ERR_NOVIDEOCAPTURE      "Cannot find a video capture device. Your camera may be in use by another application, or it is not connected to your computer."
+    ERR_ADDVIDEOCAPTURE     "cannot add video capture device to filter graph"
+    ERR_CREATECAPTUREGRAPHBUILDER "cannot create capture graph builder"
+    ERR_SETFILTERGRAPH      "cannot set filter graph"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ERR_RENDERSTREAM        "cannot render stream"
+    ERR_CREATESMARTTEE      "cannot create smart tee filter"
+    ERR_ADDSMARTTEE         "cannot add smart tee filter to graph"
+    ERR_CREATEGRABBER       "Cannot create sample grabber. Make sure you have installed DirectX 8.1 or later."
+    ERR_CREATENULLRENDERER  "cannot create null renderer"
+    ERR_ADDNULLRENDERER     "Cannot add null renderer to graph"
+    ERR_ADDGRABBER          "cannot add sample grabber to graph"
+    ERR_QUERYGRABBER        "cannot query samplegrabber interface"
+    ERR_SETMEDIATYPE        "cannot set media type on sample grabber"
+    IDS_IMAGESIZESMALL      "Small (160x120)"
+    IDS_IMAGESIZEMEDIUM     "Medium (320x240)"
+    IDS_IMAGESIZELARGE      "Large (480x360)"
+    IDS_IMAGESIZEXLARGE     "Extra Large (640x480)"
+    ERR_MODIFYVIDEOFORMAT   "You cannot modify the video format."
+    IDS_APPNAME             "Fwink"
+    ERR_MODIFYVIDCAP        "You cannot modify the video capture properties."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PREVIEWWINDOWTITLE  "Fwink Preview"
+    IDS_SETTINGS            "Fwink Settings"
+    ERR_TVTUNERPROPERTIES   "You cannot modify the TV tuner properties."
+    IDS_UPPERLEFT           "Upper-Left"
+    IDS_TOP                 "Top"
+    IDS_UPPERRIGHT          "Upper-Right"
+    IDS_LEFT                "Left"
+    IDS_CENTRE              "Centre"
+    IDS_RIGHT               "Right"
+    IDS_LOWERLEFT           "Lower-Left"
+    IDS_BOTTOM              "Bottom"
+    IDS_LOWERRIGHT          "Lower-Right"
+    IDS_BG_SOLID            "Solid"
+    IDS_BG_TRANSLUCENT      "Translucent"
+    IDS_BG_NONE             "None"
+    ERR_EXPIRED             "This release candidate version of Fwink has expired."
+END
+
+#endif    // English (Canada) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

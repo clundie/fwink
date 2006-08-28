@@ -1,0 +1,9 @@
+LIBRARY      "fwink_remote"
+DESCRIPTION  'Fwink Plug-in'
+
+EXPORTS
+	WhatKeysDoYouWant PRIVATE
+	EnumerateProgrammableFunction PRIVATE
+	Configure PRIVATE	
+	AreYouInFocus PRIVATE	
+	HandleKey PRIVATE		

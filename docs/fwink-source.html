@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Compiling the Fwink Source Code</title>
+</head>
+<body>
+
+<h1>Compiling the Fwink Source Code</h1>
+
+<p>To compile Fwink, you will need the following tools:</p>
+
+<ul>
+<li>MS Visual C++ 6.0</li>
+<li>Visual Studio 6.0 Service Pack 5</li>
+<li>MS Platform SDK February 2003 or later</li>
+<li>DirectX 9.0 SDK (summer 2003 update) including C++ sample source code</li>
+</ul>
+
+<h2>Crossbar</h2>
+
+<p>You will need to copy <b>crossbar.cpp</b> and <b>crossbar.h</b> from the
+DirectX 9 SDK into the Fwink folder. If you installed the SDK
+to <b>C:\DX90SDK</b>, you will find these files in
+<b>C:\DX90SDK\Samples\C++\DirectShow\Capture\amcap</b>.</p>
+
+<h2>DirectShow Base Classes</h2>
+
+<p>You also need to build the <b>Base Classes</b> DirectShow sample. The
+project is located at <b>C:\DX90SDK\Samples\C++\DirectShow\BaseClasses</b>.
+Open the file <b>baseclasses.dsw</b>.
+Build the UNICODE release and debug versions of the project.
+It should create the libraries <b>strmbase.lib</b> and <b>strmbasd.lib</b> which Fwink needs to link to.</p>
+
+<h2>MS Layer For Unicode</h2>
+
+<p>The MS Layer for Unicode lets Unicode applications run on Windows 95, 98 and ME.
+Fwink will link with <b>unicows.lib</b> which replaces some of the Win32 Unicode
+functions. On Windows 95, 98 and ME, the unicows.dll library implements these
+functions. Windows NT, 2000 and XP will use their native system calls.</p>
+
+<p><b>Warning:</b> The February 2003 Platform SDK has a bug in unicows.lib that
+prevents the debug version of Fwink from linking in VC++ 6.0.
+This should be fixed with the next release of the Platform SDK.
+This issue should not affect Visual Studio .NET.</p>
+
+</body>
+</html>

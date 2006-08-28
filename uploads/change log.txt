@@ -1,0 +1,93 @@
+0.9.9.2:
+
+* Added timeouts to FTP connection to prevent getting stuck.
+
+0.9.9.1:
+
+* Includes new version of gdiplus.dll due to critical security flaw in
+JPEG processing. See Microsoft security bulletin
+(http://www.microsoft.com/security/bulletins/200409_jpeg.mspx).
+Windows 98/ME/2000 users must update Fwink to fix this vulnerability.
+Windows XP/2003 users must use Windows Update to fix this vulnerability,
+and do not need to update Fwink.
+* New feature: Crop captured image.
+
+
+0.9.8.0:
+
+* New feature: Overlay.
+
+
+0.9.7.2:
+
+* New feature: Disable timer.
+* Source code updated for DirectX 9.0 SDK Summer 2003 Update (Number of
+arguments for CCrossBar constructor changed).
+
+
+0.9.7.1:
+
+* Bug fix: radio buttons on Remote Wonder plug-in configuration dialog
+did not work properly with the keyboard.
+
+
+0.9.7.0:
+
+* New feature: ATI Remote Wonder plug-in.
+
+
+0.9.6.0:
+
+* New feature: Save To File. Save your captured images to a file on your
+hard disk.
+* New feature: Disable FTP. Now you can completely disable file uploads.
+This is useful if you just want to save your images as files.
+* Now, Fwink will not erase its settings when you uninstall it.
+This makes it convenient to remove Fwink and keep your settings
+when you install a newer version.
+* Bug fix: The installer will now put the shortcuts in the correct
+Start Menu folder. Previously, it always used the "Programs" folder,
+which is correct only for English language users.
+
+
+0.9.5.0:
+
+* New feature: Separate date and time.
+You can turn off the date or time in the time stamp.
+* New feature: Automated update checking.
+When you click on the "Fwink Home Page" button,
+it checks to see if a new version is available.
+If so, you get a quick link to download it.
+* New feature: Upload and Quit. If you supply the
+command-line argument "oneshot", Fwink will take one picture
+and then quit. The installer makes a shortcut that does this.
+
+
+0.9.4.0:
+
+* New feature: position the text message and time stamp. There are nine
+positions to choose from.
+* New feature: slider control for JPEG quality.
+* New feature: turn text background on, off or translucent.
+* New feature: turn text drop shadow on or off.
+* Added a button that sends you to the Fwink home page.
+
+
+0.9.3.0:
+
+* New feature: Passive FTP.
+* Fixed timing bug that caused hours to be equal to seconds.
+* Changed installer so it refuses to install on Windows NT 4.0. Fwink
+cannot run on that platform because it lacks DirectX 8.
+
+
+0.9.2.4:
+
+* New feature: horizontal and vertical flip.
+* Dialogs re-sized to fit 480-pixel tall displays.
+
+
+0.9.2.3:
+
+* First release.
+

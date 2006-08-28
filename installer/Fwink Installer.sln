@@ -1,0 +1,11 @@
+Microsoft Visual Studio Solution File, Format Version 1.00
+Project("{73393D18-DAC4-11D1-88FC-0000F8064EBB}") = "Fwink Installer", "Fwink Installer.wip", "{F6CFF2FA-459D-4A10-9376-F2A9E104DE42}"
+EndProject
+Global
+	GlobalSection(LocalDeployment) = postSolution
+		StartupProject = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
+	GlobalSection(BuildOrder) = postSolution
+		0 = {F6CFF2FA-459D-4A10-9376-F2A9E104DE42}
+	EndGlobalSection
+EndGlobal
