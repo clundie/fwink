@@ -254,7 +254,8 @@ WebCam::DialogProcEffects(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			int found = 0;
 			collection.GetFamilies(count, pFamily, &found);
 			WCHAR wszFamilyName[LF_FACESIZE];
-			for (int i=0; i<count; ++i)
+			int i;
+			for (i=0; i<count; ++i)
 			{
 				pFamily[i].GetFamilyName(wszFamilyName);
 				LRESULT index = SendDlgItemMessage(hwndDlg, IDC_FONTLIST, CB_ADDSTRING, 0,
