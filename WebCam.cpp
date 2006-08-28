@@ -1,6 +1,6 @@
 /*
 
-Copyright (c) 2001-2004 Chris Lundie
+Copyright (c) 2001-2006 Chris Lundie
 http://lundie.ca/
 
 This file is part of Fwink.
@@ -351,7 +351,7 @@ WebCam::Start(void)
 
 	// Check if this is the first time the app has run.
 	{
-		unsigned uFirstRun = 0;
+		unsigned uFirstRun = 1;
 		LoadSetting(L"FirstRun", &uFirstRun);
 		if (uFirstRun)
 		{

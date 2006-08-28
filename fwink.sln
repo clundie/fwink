@@ -4,6 +4,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fwink", "fwink.vcproj", "{5
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "remotewonder", "remotewonder\remotewonder.vcproj", "{C449747F-CC61-46CB-8057-D4E19278D8AD}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "installer2", "installer2\installer2.vdproj", "{4393F72F-4F09-42B6-800C-9476BF9E1F79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,7 +17,11 @@ Global
 		{5E9AE5A3-6862-4F99-87A1-BC4E5A8E7BCB}.Release|Win32.ActiveCfg = Release|Win32
 		{5E9AE5A3-6862-4F99-87A1-BC4E5A8E7BCB}.Release|Win32.Build.0 = Release|Win32
 		{C449747F-CC61-46CB-8057-D4E19278D8AD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C449747F-CC61-46CB-8057-D4E19278D8AD}.Debug|Win32.Build.0 = Debug|Win32
 		{C449747F-CC61-46CB-8057-D4E19278D8AD}.Release|Win32.ActiveCfg = Release|Win32
+		{C449747F-CC61-46CB-8057-D4E19278D8AD}.Release|Win32.Build.0 = Release|Win32
+		{4393F72F-4F09-42B6-800C-9476BF9E1F79}.Debug|Win32.ActiveCfg = Debug
+		{4393F72F-4F09-42B6-800C-9476BF9E1F79}.Release|Win32.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,6 @@
 /*
 
-Copyright (c) 2001-2004 Chris Lundie
+Copyright (c) 2001-2006 Chris Lundie
 http://lundie.ca/
 
 This file is part of Fwink.
