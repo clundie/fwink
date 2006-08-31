@@ -1,6 +1,6 @@
 /*
 
-Copyright (c) 2001-2004 Chris Lundie
+Copyright (c) 2001-2006 Chris Lundie
 http://lundie.ca/
 
 This file is part of Fwink.
@@ -217,6 +217,12 @@ WebCam::DialogProcVideo(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 					break;
 				}
 
+				case IDC_BTN_CHANGE_VIDEO_DEVICE:
+				{
+					cam->ShowChooseVideoDeviceDialog(hwndDlg);
+					break;
+				}
+
 			}
 
 			break;
@@ -353,7 +359,7 @@ WebCam::DialogProcVideo(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			{
 				IAMTVTuner* pTuner = NULL;
 				hr = cam->pBuilder->FindInterface(
-					NULL,
+					&LOOK_UPSTREAM_ONLY,
 					NULL,
 					cam->pVidcap,
 					IID_IAMTVTuner,
@@ -364,9 +370,13 @@ WebCam::DialogProcVideo(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				}
 				else
 				{
+					EnableWindow(GetDlgItem(hwndDlg, IDC_BTNTVTUNER), TRUE);
 					pTuner->Release();
 				}
 			}
+
+			// Set video device name
+			SetDlgItemText(hwndDlg, IDC_VIDEO_DEVICE_NAME, cam->sDeviceName.c_str());
 
 			break;
 		}

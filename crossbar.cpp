@@ -34,6 +34,7 @@
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 //------------------------------------------------------------------------------
 
+#include "WebCam.h"
 #include <streams.h>
 
 #include "crossbar.h"

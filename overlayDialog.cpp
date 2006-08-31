@@ -50,8 +50,8 @@ WebCam::AddOverlay(
 	}
 	Graphics g(imBase);
 
-	float fWidthScaled = imOverlay->GetWidth();
-	float fHeightScaled = imOverlay->GetHeight();
+	float fWidthScaled = (float)imOverlay->GetWidth();
+	float fHeightScaled = (float)imOverlay->GetHeight();
 
 	if (uScaleType == WebCam::ovlscale_percentage)
 	{
@@ -61,11 +61,11 @@ WebCam::AddOverlay(
 	else if (uScaleType == WebCam::ovlscale_bestfit)
 	{
 		float fAspect = fWidthScaled / fHeightScaled;
-		fHeightScaled = imBase->GetHeight();
+		fHeightScaled = (float)imBase->GetHeight();
 		fWidthScaled = fHeightScaled * fAspect;
 		if (fWidthScaled > imBase->GetWidth())
 		{
-			fWidthScaled = imBase->GetWidth();
+			fWidthScaled = (float)imBase->GetWidth();
 			fHeightScaled = fWidthScaled / fAspect;
 		}
 	}
@@ -199,11 +199,11 @@ OverlayDialog::UpdateComposite()
 	g.SetInterpolationMode(InterpolationModeLowQuality);
 	g.SetPixelOffsetMode(PixelOffsetModeHalf);
 
-	RectF r(0, 0, uPreviewWidth, uPreviewHeight);
+	RectF r(0., 0., (REAL)uPreviewWidth, (REAL)uPreviewHeight);
 	g.DrawImage(imageBase, r, 0.5f, 0.5f, (float)imageBase->GetWidth() - 1.0f, (float)imageBase->GetHeight() - 1.0f, UnitPixel, NULL, NULL, NULL);
 
 	unsigned uOpacity = SendDlgItemMessage(hwndDlg, IDC_OVLOPACITY_SLIDER, TBM_GETPOS, 0, 0);
-	float fScale = SendDlgItemMessage(hwndDlg, IDC_OVLSCALE_SLIDER, TBM_GETPOS, 0, 0);
+	float fScale = (float)SendDlgItemMessage(hwndDlg, IDC_OVLSCALE_SLIDER, TBM_GETPOS, 0, 0);
 	float fScaleX = fScale * (float)uPreviewWidth / (float)cam->uImageWidth;
 	float fScaleY = fScale * (float)uPreviewHeight / (float)cam->uImageHeight;
 

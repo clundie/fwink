@@ -24,6 +24,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #ifndef WEBCAM_H
 #define WEBCAM_H
 
+#pragma warning(disable : 4995)
+
 class WebCam;
 
 #include <windows.h>
@@ -42,11 +44,14 @@ class WebCam;
 #include <string>
 #include <dvdmedia.h>
 #include <commdlg.h>
+#include <vector>
 #include "resource.h"
 #include "dllversion.h"
 #include "crossbar.h"
+#include "VideoDevice.h"
 
 using std::wstring;
+using std::vector;
 using namespace Gdiplus;
 
 class WebCam
@@ -113,6 +118,9 @@ public:
 	static INT_PTR CALLBACK DialogProcFTP(HWND, UINT, WPARAM, LPARAM);
 	static INT_PTR CALLBACK DialogProcEffects(HWND, UINT, WPARAM, LPARAM);
 	static INT_PTR CALLBACK DialogProcOverlay(HWND, UINT, WPARAM, LPARAM);
+	static INT_PTR CALLBACK DialogProcChooseVideoDevice(HWND, UINT, WPARAM, LPARAM);
+	void EnumerateVideoDevicesForComboBox(HWND hwndComboBox);
+	void ShowChooseVideoDeviceDialog(HWND hwndParent);
 	void ShowMainDialog(void);
 	void CreateNotificationIcon(void);
 	void CreateMainDialog(void);
@@ -237,6 +245,11 @@ public:
 	bool bCrop;
 	unsigned uCropWidth, uCropHeight,
 		uCropX, uCropY;
+
+	wstring sDeviceName;
+	wstring sDevicePath;
+
+	vector<VideoDevice> videoDevices;
 
 	// DirectShow stuff
 	//

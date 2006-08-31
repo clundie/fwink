@@ -49,7 +49,10 @@ WebCam::LoadSetting(const WCHAR* name, wstring& value)
 	if (ERROR_SUCCESS != l)
 		return false;
 
-	value.assign(szValue, keysize/sizeof(TCHAR));
+	if (keysize < sizeof(TCHAR))
+		return false;
+
+	value.assign(szValue, keysize/sizeof(TCHAR) - 1);
 	return true;
 }
 

@@ -23,6 +23,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "WebCam.h"
 #include <ctime>
+#include <comdef.h>
 
 // Open TV tuner properties
 //
@@ -36,7 +37,7 @@ WebCam::TVTunerProperties(const HWND hwndParent, const bool bShowErrors)
 	IAMTVTuner* pTuner = NULL;
 
 	hr = pBuilder->FindInterface(
-		NULL,
+		&LOOK_UPSTREAM_ONLY,
 		NULL,
 		pVidcap,
 		IID_IAMTVTuner,
@@ -371,9 +372,9 @@ WebCam::UploadImage(void)
 					{
 						g2->DrawImage(
 							image,
-							RectF(0, 0, uImageWidth, uImageHeight),
-							uCropX, uCropY,
-							uCropWidth, uCropHeight,
+							RectF(0., 0., (REAL)uImageWidth, (REAL)uImageHeight),
+							(REAL)uCropX, (REAL)uCropY,
+							(REAL)uCropWidth, (REAL)uCropHeight,
 							UnitPixel,
 							NULL,
 							NULL,
@@ -401,7 +402,7 @@ WebCam::UploadImage(void)
 			// Add overlay to image
 			AddOverlay(image, NULL, false, uOverlayOpacity,
 				uOverlayScale,
-				uOverlayScalePercent, uOverlayScalePercent,
+				(float)uOverlayScalePercent, (float)uOverlayScalePercent,
 				bOverlayColourKey,
 				GetRValue(rgbColourKey), GetGValue(rgbColourKey), GetBValue(rgbColourKey),
 				uOverlayPosition
@@ -744,15 +745,69 @@ WebCam::InitDirectShow(void)
 
 	ULONG cFetched;
 	IMoniker *pMoniker = NULL;
+	wstring newDevicePath, newDeviceName;
 
-	if (pClassEnum->Next(1, &pMoniker, &cFetched) == S_OK)
+	while (pClassEnum->Next(1, &pMoniker, &cFetched) == S_OK)
 	{
+		wstring friendlyName, devicePath;
+		// Get the property bag of the moniker
+		{
+			IPropertyBagPtr propBag;
+			hr = pMoniker->BindToStorage(NULL, NULL, IID_IPropertyBag,
+					reinterpret_cast<void**>(&propBag));
+			if (FAILED(hr))
+			{
+				pMoniker->Release();
+				continue;
+			}
+
+			_variant_t v;
+			hr = propBag->Read(L"Description", &v, 0);
+			if (FAILED(hr))
+			{
+				hr = propBag->Read(L"FriendlyName", &v, 0);
+			}
+			if (S_OK == hr)
+			{
+				friendlyName = v.bstrVal;
+			}
+			hr = propBag->Read(L"DevicePath", &v, 0);
+			if (S_OK == hr)
+			{
+				devicePath = v.bstrVal;
+			}
+		}
+
 		// Bind the first moniker to a filter object.
-		pMoniker->BindToObject(0, 0, IID_IBaseFilter, (void**)&pVidcap);
+		if (pVidcap == NULL)
+		{
+			pMoniker->BindToObject(0, 0, IID_IBaseFilter, (void**)&pVidcap);
+			newDeviceName = friendlyName;
+			newDevicePath = devicePath;
+		}
+		else if (
+			(devicePath == this->sDevicePath)
+			||
+			(this->sDevicePath.empty() && !devicePath.compare(0, 8, L"\\\\?\\usb#"))
+			)
+		{
+			if (pVidcap)
+			{
+				pVidcap->Release();
+				pVidcap = NULL;
+			}
+			pMoniker->BindToObject(0, 0, IID_IBaseFilter, (void**)&pVidcap);
+			newDeviceName = friendlyName;
+			newDevicePath = devicePath;
+		}
 		pMoniker->Release();
 	}
 	pClassEnum->Release();
 	pDevEnum->Release();
+
+	this->sDeviceName = newDeviceName;
+	this->sDevicePath = newDevicePath;
+	SaveSetting(L"devicePath", newDevicePath.c_str());
 
 	if (!pVidcap)
 		throw ERR_NOVIDEOCAPTURE;
@@ -1037,7 +1092,7 @@ WebCam::AddText(Image* pImage)
 	if (bFontItalic) style = static_cast<FontStyle>(style | static_cast<int>(FontStyleItalic));
 	if (bFontUnderline) style = static_cast<FontStyle>(style | static_cast<int>(FontStyleUnderline));
 	if (bFontStrikeout) style = static_cast<FontStyle>(style | static_cast<int>(FontStyleStrikeout));
-	Font font(&fontFamily, uFontSize, style, UnitPixel);
+	Font font(&fontFamily, (REAL)uFontSize, style, UnitPixel);
 
 	// Set antialias
 	
@@ -1083,8 +1138,8 @@ WebCam::AddText(Image* pImage)
 
 	// Set vertical text position
 	//
-	RectF rWholeImage(0, 0, uImageWidth, uImageHeight);
-	RectF rText(0, 0, uImageWidth, uImageHeight);
+	RectF rWholeImage(0., 0., (REAL)uImageWidth, (REAL)uImageHeight);
+	RectF rText(0., 0., (REAL)uImageWidth, (REAL)uImageHeight);
 	g.MeasureString(sText.c_str(), -1, &font, rWholeImage, &format, &rText, NULL, NULL);
 
 	switch (uTextPosition)
@@ -1442,15 +1497,18 @@ void WebCam::CropPreview()
 		if (aspectRatio * windowHeight > windowWidth)
 		{
 			destWidth = windowWidth;
-			destHeight = destWidth / aspectRatio;
+			destHeight = (long)((float)destWidth / aspectRatio);
 		}
 		else
 		{
 			destHeight = windowHeight;
-			destWidth = destHeight * aspectRatio;
+			destWidth = (long)((float)destHeight * aspectRatio);
 		}
 
-		pVideo->SetDestinationPosition(((float)windowWidth - (float)destWidth) / 2.0f, ((float)windowHeight - (float)destHeight) / 2.0f, destWidth, destHeight);
+		pVideo->SetDestinationPosition(
+			(long)(((float)windowWidth - (float)destWidth) / 2.0f),
+			(long)(((float)windowHeight - (float)destHeight) / 2.0f),
+			destWidth, destHeight);
 
 		pVideo->Release();
 	}

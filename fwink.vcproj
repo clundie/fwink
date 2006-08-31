@@ -21,6 +21,7 @@
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
+			UseOfATL="1"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="1"
 			>
@@ -49,11 +50,13 @@
 				Name="VCCLCompilerTool"
 				Optimization="1"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="&quot;C:\PROG\fwink-checkout\BaseClasses&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)BaseClasses&quot;"
 				PreprocessorDefinitions="NDEBUG;_WIN32_WINNT=0x400;UNICODE;_WIN32_WINNT=0x501;WINVER=0x0501;_WIN32_WINDOWS=0x410;_WIN32_IE=0x0501;WIN32_LEAN_AND_MEAN;WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough="WebCam.h"
 				PrecompiledHeaderFile=".\Release/fwink.pch"
 				AssemblerListingLocation=".\Release/"
 				ObjectFile=".\Release/"
@@ -78,7 +81,7 @@
 				OutputFile=".\Release/fwink.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="&quot;C:\PROG\fwink-checkout\BaseClasses\XP32_RETAIL&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)BaseClasses\XP32_RETAIL&quot;"
 				IgnoreDefaultLibraryNames="kernel32.lib,advapi32.lib,user32.lib,gdi32.lib,shell32.lib,comdlg32.lib,version.lib,mpr.lib,rasapi32.lib,winmm.lib,winspool.lib,vfw32.lib,secur32.lib,oleacc.lib,oledlg.lib,sensapi.lib"
 				ProgramDatabaseFile=".\Release/fwink.pdb"
 				SubSystem="2"
@@ -118,6 +121,7 @@
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
+			UseOfATL="1"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="1"
 			>
@@ -145,17 +149,19 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;C:\PROG\fwink-checkout\BaseClasses&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)BaseClasses&quot;"
 				PreprocessorDefinitions="_DEBUG;UNICODE;_WIN32_WINNT=0x501;WINVER=0x0501;_WIN32_WINDOWS=0x410;_WIN32_IE=0x0501;WIN32_LEAN_AND_MEAN;WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough="WebCam.h"
 				PrecompiledHeaderFile=".\Debug/fwink.pch"
 				AssemblerListingLocation=".\Debug/"
 				ObjectFile=".\Debug/"
 				ProgramDataBaseFileName=".\Debug/"
-				BrowseInformation="2"
-				BrowseInformationFile=".\Debug/"
+				BrowseInformation="0"
+				BrowseInformationFile=""
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -177,7 +183,7 @@
 				OutputFile=".\Debug/fwink.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="&quot;C:\PROG\fwink-checkout\BaseClasses\XP32_DEBUG&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)BaseClasses\XP32_DEBUG&quot;"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\Debug/fwink.pdb"
 				SubSystem="2"
@@ -219,6 +225,10 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\chooseVideoDeviceDialog.cpp"
+				>
+			</File>
+			<File
 				RelativePath="crossbar.cpp"
 				>
 				<FileConfiguration
@@ -241,26 +251,8 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="dllversion.c"
+				RelativePath=".\dllversion.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="effectsDialog.cpp"
@@ -439,6 +431,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\VideoDevice.cpp"
+				>
+			</File>
+			<File
 				RelativePath="videoDialog.cpp"
 				>
 				<FileConfiguration
@@ -470,6 +466,7 @@
 						Name="VCCLCompilerTool"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="1"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -479,6 +476,7 @@
 						Name="VCCLCompilerTool"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="1"
 					/>
 				</FileConfiguration>
 			</File>
@@ -501,6 +499,10 @@
 			</File>
 			<File
 				RelativePath="resource.h"
+				>
+			</File>
+			<File
+				RelativePath=".\VideoDevice.h"
 				>
 			</File>
 			<File

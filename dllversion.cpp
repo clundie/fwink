@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 */
 
+#include "WebCam.h"
 #include "dllversion.h"
 #include <windows.h>
 #include <shlwapi.h>

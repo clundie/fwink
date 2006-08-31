@@ -1,5 +1,5 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Developer Studio generated include file.
+// Microsoft Visual C++ generated include file.
 // Used by resource.rc
 //
 #define IDS_IDLE                        1
@@ -22,6 +22,7 @@
 #define STATUS_CHDIR                    18
 #define ERR_UPLOAD                      19
 #define ERR_INTERNETOPEN                20
+#define IDS_DEVICE_CHANGED              21
 #define ERR_UPLOAD_DIRECTORY            22
 #define ERR_BALLOONTITLE                23
 #define ERR_COINIT                      24
@@ -64,6 +65,8 @@
 #define IDS_BG_TRANSLUCENT              61
 #define IDS_BG_NONE                     62
 #define ERR_EXPIRED                     63
+#define ERR_CREATE_CHOOSE_VIDEO_DEVICE_DIALOG 64
+#define IDS_DEVICE_CHANGED_TITLE        65
 #define IDD_MAIN                        101
 #define IDI_APPICON                     102
 #define IDD_FTP                         107
@@ -71,6 +74,7 @@
 #define IDD_EFFECTS                     109
 #define IDD_OVERLAY                     111
 #define IDB_OVERLAYPREVIEW              117
+#define IDD_CHOOSE_VIDEO_DEVICE         118
 #define IDC_BTNPREVIEW                  1000
 #define IDC_BTNEXIT                     1001
 #define IDC_BTNCAPTURE                  1003
@@ -105,6 +109,7 @@
 #define IDC_VIDEOSOURCE                 1041
 #define IDC_BTNTVTUNER                  1042
 #define IDC_BTNFGCOLOUR                 1043
+#define IDC_BTN_CHANGE_VIDEO_DEVICE     1043
 #define IDC_BTNBGCOLOUR                 1044
 #define IDC_SAMPLETEXT                  1045
 #define IDC_FLIPHORIZONTAL              1046
@@ -150,14 +155,16 @@
 #define IDC_CROP_X                      1094
 #define IDC_CROP_WIDTH                  1095
 #define IDC_CROP_HEIGHT                 1096
+#define IDC_VIDEO_DEVICE_NAME           1097
+#define IDC_COMBO_VIDEO_DEVICE          1098
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        118
+#define _APS_NEXT_RESOURCE_VALUE        119
 #define _APS_NEXT_COMMAND_VALUE         40004
-#define _APS_NEXT_CONTROL_VALUE         1097
+#define _APS_NEXT_CONTROL_VALUE         1099
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

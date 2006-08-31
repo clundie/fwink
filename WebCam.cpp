@@ -305,6 +305,7 @@ WebCam::Start(void)
 	LoadSetting(L"CropWidth", &uCropWidth);
 	LoadSetting(L"CropHeight", &uCropHeight);
 	LoadSetting(L"CropEnable", &bCrop);
+	LoadSetting(L"devicePath", sDevicePath);
 	
 	unsigned r, g, b;
 
@@ -662,6 +663,21 @@ WebCam::ApplyImageSize(void)
 				uImageHeight = 240;
 				break;
 		}
+	}
+}
+
+void
+WebCam::ShowChooseVideoDeviceDialog(HWND hwndParent)
+{
+	INT_PTR result = DialogBoxParam(
+		GetModuleHandle(NULL),
+		MAKEINTRESOURCE(IDD_CHOOSE_VIDEO_DEVICE),
+		hwndParent,
+		DialogProcChooseVideoDevice,
+		(LPARAM)this);
+	if ((result == 0) || (result == -1))
+	{
+		throw ERR_CREATE_CHOOSE_VIDEO_DEVICE_DIALOG;
 	}
 }
 
