@@ -173,6 +173,10 @@ WebCam::ChangeVideoFormat(const HWND hwndParent, const bool bShowErrors)
 void
 WebCam::ChangeVidcapProperties(const HWND hwndParent, const bool bShowErrors)
 {
+	if (uDeviceType != deviceType_camera)
+	{
+		return;
+	}
 	ISpecifyPropertyPages* pPropVidcap = NULL;
 	pVidcap->QueryInterface(IID_ISpecifyPropertyPages, (void **)&pPropVidcap);
 	if (!pPropVidcap)
@@ -231,100 +235,111 @@ WebCam::UploadImage(void)
 	// Stream interface for bitmap
 	//
 	IStream* pBitmapStream = NULL;
-	
-	// Get sample grabber interface
-	//
-	ISampleGrabber *pGrabber = NULL;
 
-	hr = pSampleGrabber->QueryInterface(IID_ISampleGrabber,
-	  reinterpret_cast<void**>(&pGrabber));
-	if (FAILED(hr))
+	if (uDeviceType == deviceType_camera)
 	{
-		return;
-	}
-
-	try
-	{
-		// Get size of captured frame
+		// Get sample grabber interface
 		//
-		long lBufferSize = 0;
-		hr = pGrabber->GetCurrentBuffer(&lBufferSize, NULL);
+		ISampleGrabber *pGrabber = NULL;
+
+		hr = pSampleGrabber->QueryInterface(IID_ISampleGrabber,
+		  reinterpret_cast<void**>(&pGrabber));
 		if (FAILED(hr))
 		{
-			throw 0;
+			return;
 		}
-
-		// Allocate memory for captured frame
-		//
-		void* pBuffer = new char[lBufferSize];
 
 		try
 		{
-
-			// Get captured frame
+			// Get size of captured frame
 			//
-			hr = pGrabber->GetCurrentBuffer(&lBufferSize, (long*)pBuffer);
+			long lBufferSize = 0;
+			hr = pGrabber->GetCurrentBuffer(&lBufferSize, NULL);
 			if (FAILED(hr))
 			{
 				throw 0;
 			}
 
-			// Get media type
-
-			AM_MEDIA_TYPE MediaType; 
-			ZeroMemory(&MediaType, sizeof(MediaType)); 
-			hr = pGrabber->GetConnectedMediaType(&MediaType); 
-			if (FAILED(hr)) throw 0;
+			// Allocate memory for captured frame
+			//
+			void* pBuffer = new char[lBufferSize];
 
 			try
 			{
-				// Get a pointer to the video header
 
-				VIDEOINFOHEADER *pVideoHeader = (VIDEOINFOHEADER*)MediaType.pbFormat;
-				if (pVideoHeader == NULL) throw 0;
+				// Get captured frame
+				//
+				hr = pGrabber->GetCurrentBuffer(&lBufferSize, (long*)pBuffer);
+				if (FAILED(hr))
+				{
+					throw 0;
+				}
 
-				// Create a bitmap file header
+				// Get media type
 
-				BITMAPFILEHEADER BmpFileHeader;
-				BmpFileHeader.bfType = MAKEWORD('B','M');
-				BmpFileHeader.bfSize = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER)
-					+ pVideoHeader->bmiHeader.biSizeImage;
-				BmpFileHeader.bfOffBits = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
-				BmpFileHeader.bfReserved1 = 0;
-				BmpFileHeader.bfReserved2 = 0;
-
-				// Create stream
-				hr = CreateStreamOnHGlobal(NULL, TRUE, &pBitmapStream);
+				AM_MEDIA_TYPE MediaType; 
+				ZeroMemory(&MediaType, sizeof(MediaType)); 
+				hr = pGrabber->GetConnectedMediaType(&MediaType); 
 				if (FAILED(hr)) throw 0;
 
-				ULARGE_INTEGER ularge;
-				ularge.QuadPart = BmpFileHeader.bfSize;
-				pBitmapStream->SetSize(ularge);
-				LARGE_INTEGER ilarge;
-				ilarge.QuadPart = 0;
-				pBitmapStream->Seek(ilarge, STREAM_SEEK_SET, NULL);
-				pBitmapStream->Write(&BmpFileHeader, sizeof(BITMAPFILEHEADER), NULL);
-				pBitmapStream->Write(&(pVideoHeader->bmiHeader), sizeof(BITMAPINFOHEADER), NULL);
-				pBitmapStream->Write(pBuffer, lBufferSize, NULL);
+				try
+				{
+					// Get a pointer to the video header
+
+					VIDEOINFOHEADER *pVideoHeader = (VIDEOINFOHEADER*)MediaType.pbFormat;
+					if (pVideoHeader == NULL) throw 0;
+
+					// Create a bitmap file header
+
+					BITMAPFILEHEADER BmpFileHeader;
+					BmpFileHeader.bfType = MAKEWORD('B','M');
+					BmpFileHeader.bfSize = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER)
+						+ pVideoHeader->bmiHeader.biSizeImage;
+					BmpFileHeader.bfOffBits = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
+					BmpFileHeader.bfReserved1 = 0;
+					BmpFileHeader.bfReserved2 = 0;
+
+					// Create stream
+					hr = CreateStreamOnHGlobal(NULL, TRUE, &pBitmapStream);
+					if (FAILED(hr)) throw 0;
+
+					ULARGE_INTEGER ularge;
+					ularge.QuadPart = BmpFileHeader.bfSize;
+					pBitmapStream->SetSize(ularge);
+					LARGE_INTEGER ilarge;
+					ilarge.QuadPart = 0;
+					pBitmapStream->Seek(ilarge, STREAM_SEEK_SET, NULL);
+					pBitmapStream->Write(&BmpFileHeader, sizeof(BITMAPFILEHEADER), NULL);
+					pBitmapStream->Write(&(pVideoHeader->bmiHeader), sizeof(BITMAPINFOHEADER), NULL);
+					pBitmapStream->Write(pBuffer, lBufferSize, NULL);
+				}
+				catch(int)
+				{
+				}
+				FreeMediaType(MediaType);
+
 			}
 			catch(int)
 			{
 			}
-			FreeMediaType(MediaType);
-
+			delete[] pBuffer;
 		}
-		catch(int)
+		catch (int)
 		{
 		}
-		delete[] pBuffer;
-	}
-	catch (int)
-	{
-	}
-	pGrabber->Release();
-	pGrabber = NULL;
+		pGrabber->Release();
+		pGrabber = NULL;
 
-	if (!pBitmapStream) return;
+		if (!pBitmapStream) return;
+	}
+	else if (uDeviceType == deviceType_file)
+	{
+
+	}
+	else
+	{
+		assert(false);
+	}
 
 	TCHAR* szPathname = new TCHAR[MAX_PATH];
 
@@ -353,8 +368,19 @@ WebCam::UploadImage(void)
 
 		// Create Image object
 		//
-		Bitmap* image = NULL;
-		image = Bitmap::FromStream(pBitmapStream);
+		Image* image = NULL;
+
+		if (uDeviceType == deviceType_camera)
+		{
+			image = Bitmap::FromStream(pBitmapStream);
+			pBitmapStream->Release();
+			pBitmapStream = NULL;
+		}
+		else if (uDeviceType == deviceType_file)
+		{
+			image = imageFile->Clone();
+		}
+
 		if (image && (Ok == image->GetLastStatus()))
 		{
 			Bitmap* image2 = new Bitmap(uImageWidth, uImageHeight, PixelFormat24bppRGB);
@@ -506,65 +532,80 @@ WebCam::UploadImage(void)
 
 	delete[] szPathname;
 	szPathname = NULL;
-	pBitmapStream->Release();
-	pBitmapStream = NULL;
 }
 
 void
 WebCam::CaptureFrame(void)
 {
-/*
-	if (time(NULL) > _expireTime)
+	if (uDeviceType == deviceType_file)
 	{
-		throw ERR_EXPIRED;
+		InitImageFile();
+
+		if (bDisableFTP && !bSaveToFile && bOneShot)
+		{
+			SendMessage(hwndMain, uQuitMessage, 0, 0);
+			return;
+		}
+
+		UploadImage();
 	}
-*/
-	if ((bDisableFTP && !bSaveToFile) || !pSampleGrabber)
+	else if (uDeviceType == deviceType_camera)
 	{
-		if (bOneShot) SendMessage(hwndMain, uQuitMessage, 0, 0);
-		return;
-	}
+		
+		
+	/*
+		if (time(NULL) > _expireTime)
+		{
+			throw ERR_EXPIRED;
+		}
+	*/
+		if ((bDisableFTP && !bSaveToFile) || !pSampleGrabber)
+		{
+			if (bOneShot) SendMessage(hwndMain, uQuitMessage, 0, 0);
+			return;
+		}
 
-	HRESULT hr;
+		HRESULT hr;
 
-	// Get sample grabber interface
-	//
-	ISampleGrabber *pGrabber = NULL;
+		// Get sample grabber interface
+		//
+		ISampleGrabber *pGrabber = NULL;
 
-	hr = pSampleGrabber->QueryInterface(IID_ISampleGrabber,
-	  reinterpret_cast<void**>(&pGrabber));
-	if (FAILED(hr))
-	{
-		if (bOneShot) SendMessage(hwndMain, uQuitMessage, 0, 0);
-		return;
-	}
+		hr = pSampleGrabber->QueryInterface(IID_ISampleGrabber,
+		  reinterpret_cast<void**>(&pGrabber));
+		if (FAILED(hr))
+		{
+			if (bOneShot) SendMessage(hwndMain, uQuitMessage, 0, 0);
+			return;
+		}
 
-	IMediaEventEx* pEvent = NULL;
-	hr = pGraph->QueryInterface(IID_IMediaEventEx, (void**)&pEvent);
-	if (FAILED(hr))
-	{
+		IMediaEventEx* pEvent = NULL;
+		hr = pGraph->QueryInterface(IID_IMediaEventEx, (void**)&pEvent);
+		if (FAILED(hr))
+		{
+			pGrabber->Release();
+			pGrabber = NULL;
+			if (bOneShot) SendMessage(hwndMain, uQuitMessage, 0, 0);
+			return;
+		}
+
+		// Start buffering samples
+		//
+
+		pEvent->CancelDefaultHandling(EC_COMPLETE);
+		pEvent->SetNotifyFlags(0);
+
+		pGrabber->SetOneShot(TRUE);
+		pGrabber->SetBufferSamples(TRUE);
+
+		StartCapture();
+
+		pEvent->Release();
+		pEvent = NULL;
+
 		pGrabber->Release();
 		pGrabber = NULL;
-		if (bOneShot) SendMessage(hwndMain, uQuitMessage, 0, 0);
-		return;
 	}
-
-	// Start buffering samples
-	//
-
-	pEvent->CancelDefaultHandling(EC_COMPLETE);
-	pEvent->SetNotifyFlags(0);
-
-	pGrabber->SetOneShot(TRUE);
-	pGrabber->SetBufferSamples(TRUE);
-
-	StartCapture();
-
-	pEvent->Release();
-	pEvent = NULL;
-
-	pGrabber->Release();
-	pGrabber = NULL;
 }
 
 void
@@ -702,6 +743,59 @@ WebCam::GetPin(IBaseFilter *pFilter, PIN_DIRECTION PinDir, const GUID& PinCatego
 		}
 		pEnum->Release();
 		return (bFound ? pPin : 0);  
+}
+
+void WebCam::InitImageFile(void)
+{
+	std::auto_ptr<Image> i(Image::FromFile(sDevicePath.c_str()));
+	if (i->GetLastStatus() != Ok)
+	{
+		return;
+	}
+
+	std::auto_ptr<Bitmap> b(new Bitmap(i->GetWidth(), i->GetHeight()));
+	std::auto_ptr<Graphics> g(new Graphics(b.get()));
+	g->DrawImage(i.get(), 0, 0, i->GetWidth(), i->GetHeight());
+	g.reset();
+	i.reset();
+
+	imageFile.reset(b.get());
+	b.release();
+
+	RECT rVideoWindow;
+	GetClientRect(GetDlgItem(hwndMain, IDC_PREVIEW), &rVideoWindow);
+	LONG windowWidth = rVideoWindow.right - rVideoWindow.left;
+	LONG windowHeight = rVideoWindow.bottom - rVideoWindow.top;
+
+	float aspectRatio = (float)imageFile->GetWidth() / (float)imageFile->GetHeight();
+	long destWidth, destHeight;
+	if (aspectRatio * windowHeight > windowWidth)
+	{
+		destWidth = windowWidth;
+		destHeight = (long)((float)destWidth / aspectRatio);
+	}
+	else
+	{
+		destHeight = windowHeight;
+		destWidth = (long)((float)destHeight * aspectRatio);
+	}
+
+	imageFilePreview.reset(new Bitmap(destWidth, destHeight));
+
+	g.reset(new Graphics(imageFilePreview.get()));
+	g->DrawImage(imageFile.get(), 0, 0, destWidth, destHeight);
+	g.reset();
+
+	HBITMAP hbm;
+	if (Ok != imageFilePreview->GetHBITMAP(Color::Color(0, 255, 255, 255), &hbm))
+	{
+		return;
+	}
+	HBITMAP oldBitmap = (HBITMAP)SendDlgItemMessage(hwndMain, IDC_PREVIEW, STM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)(HANDLE)hbm);
+	if (oldBitmap)
+	{
+		DeleteBitmap(oldBitmap);
+	}
 }
 
 void
@@ -1458,6 +1552,10 @@ WebCam::GetCaptureSize(void)
 
 void WebCam::CropPreview()
 {
+	if (uDeviceType != deviceType_camera)
+	{
+		return;
+	}
 	IVideoWindow* pWindow = NULL;
 	IBasicVideo* pVideo = NULL;
 	HRESULT hr;

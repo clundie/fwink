@@ -45,6 +45,7 @@ class WebCam;
 #include <dvdmedia.h>
 #include <commdlg.h>
 #include <vector>
+#include <assert.h>
 #include "resource.h"
 #include "dllversion.h"
 #include "crossbar.h"
@@ -106,12 +107,20 @@ public:
 		textbackground_none = 2
 	};
 
+	enum deviceType_t
+	{
+		deviceType_camera = 0,
+		deviceType_file = 1
+	};
+	static const unsigned uMinDeviceType, uMaxDeviceType;
+
 	WebCam();
 	~WebCam();
 
 	void Start(void);
 	void StartOneShot(void);
 
+	void InitImageFile(void);
 	void HandleCaptureMessage(WebCam* cam, HWND hwndDlg);
 	static INT_PTR CALLBACK DialogProcMain(HWND, UINT, WPARAM, LPARAM);
 	static INT_PTR CALLBACK DialogProcVideo(HWND, UINT, WPARAM, LPARAM);
@@ -248,8 +257,12 @@ public:
 
 	wstring sDeviceName;
 	wstring sDevicePath;
+	unsigned uDeviceType;
 
 	vector<VideoDevice> videoDevices;
+
+	std::auto_ptr<Gdiplus::Image> imageFile;
+	std::auto_ptr<Gdiplus::Bitmap> imageFilePreview;
 
 	// DirectShow stuff
 	//

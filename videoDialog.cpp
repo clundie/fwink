@@ -71,26 +71,29 @@ WebCam::DialogProcVideo(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				cam->bFlipHorizontal = (IsDlgButtonChecked(hwndDlg, IDC_FLIPHORIZONTAL) == BST_CHECKED);
 				cam->bFlipVertical = (IsDlgButtonChecked(hwndDlg, IDC_FLIPVERTICAL) == BST_CHECKED);
 
-				long lIndex = SendDlgItemMessage(hwndDlg, IDC_VIDEOSOURCE,
-					CB_GETCURSEL, 0, 0);
-				if (CB_ERR != lIndex)
+				if (cam->uDeviceType == deviceType_camera)
 				{
-					long lSource = SendDlgItemMessage(hwndDlg, IDC_VIDEOSOURCE,
-						CB_GETITEMDATA, lIndex, 0);
-					if (CB_ERR != lSource)
+					long lIndex = SendDlgItemMessage(hwndDlg, IDC_VIDEOSOURCE,
+						CB_GETCURSEL, 0, 0);
+					if (CB_ERR != lIndex)
 					{
-						cam->uCrossbarInput = lSource;
-						IPin* pinVidcapIn = cam->GetPin(cam->pVidcap, PINDIR_INPUT, PIN_CATEGORY_ANALOGVIDEOIN);
-						if (pinVidcapIn)
+						long lSource = SendDlgItemMessage(hwndDlg, IDC_VIDEOSOURCE,
+							CB_GETITEMDATA, lIndex, 0);
+						if (CB_ERR != lSource)
 						{
-							HRESULT hr;
-							CCrossbar* pCCrossbar = new CCrossbar(pinVidcapIn, &hr);
-							if (pCCrossbar)
+							cam->uCrossbarInput = lSource;
+							IPin* pinVidcapIn = cam->GetPin(cam->pVidcap, PINDIR_INPUT, PIN_CATEGORY_ANALOGVIDEOIN);
+							if (pinVidcapIn)
 							{
-								pCCrossbar->SetInputIndex(lSource);
-								delete pCCrossbar;
+								HRESULT hr;
+								CCrossbar* pCCrossbar = new CCrossbar(pinVidcapIn, &hr);
+								if (pCCrossbar)
+								{
+									pCCrossbar->SetInputIndex(lSource);
+									delete pCCrossbar;
+								}
+								pinVidcapIn->Release();
 							}
-							pinVidcapIn->Release();
 						}
 					}
 				}
@@ -197,22 +200,28 @@ WebCam::DialogProcVideo(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 				case IDC_BTNVIDCAPPROPERTIES:
 				{
-					cam->ChangeVidcapProperties(hwndDlg, true);
+					if (cam->uDeviceType == deviceType_camera)
+					{
+						cam->ChangeVidcapProperties(hwndDlg, true);
+					}
 					break;
 				}
 
 				case IDC_BTNVIDEOFORMAT:
 				{
-					cam->StopTimer();
-					cam->StopCapture();
+					if (cam->uDeviceType == deviceType_camera)
+					{
+						cam->StopTimer();
+						cam->StopCapture();
 
-					cam->ChangeVideoFormat(hwndDlg, true);
+						cam->ChangeVideoFormat(hwndDlg, true);
 
-					cam->StartCapture();
-					cam->StartTimer();
+						cam->StartCapture();
+						cam->StartTimer();
 
-					PropSheet_Changed(GetParent(hwndDlg), hwndDlg);
-					PropSheet_CancelToClose(GetParent(hwndDlg));
+						PropSheet_Changed(GetParent(hwndDlg), hwndDlg);
+						PropSheet_CancelToClose(GetParent(hwndDlg));
+					}
 
 					break;
 				}
@@ -296,83 +305,95 @@ WebCam::DialogProcVideo(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 			// set up crossbar
 
-			EnableWindow(GetDlgItem(hwndDlg, IDC_VIDEOSOURCE), FALSE);
-
-			HRESULT hr;
-
-			IPin* pinVidcapIn = cam->GetPin(cam->pVidcap, PINDIR_INPUT, PIN_CATEGORY_ANALOGVIDEOIN);
-			if (pinVidcapIn)
+			if (cam->uDeviceType == deviceType_camera)
 			{
-				HRESULT hrCrossbar;
-				CCrossbar* pCCrossbar = new CCrossbar(pinVidcapIn, &hrCrossbar);
-				if (pCCrossbar)
+
+
+				EnableWindow(GetDlgItem(hwndDlg, IDC_VIDEOSOURCE), FALSE);
+
+				HRESULT hr;
+
+				IPin* pinVidcapIn = cam->GetPin(cam->pVidcap, PINDIR_INPUT, PIN_CATEGORY_ANALOGVIDEOIN);
+				if (pinVidcapIn)
 				{
-					LONG lCount = 0;
-					hr = pCCrossbar->GetInputCount(&lCount);
-			
-					for (LONG l=0; l<lCount; ++l)
+					HRESULT hrCrossbar;
+					CCrossbar* pCCrossbar = new CCrossbar(pinVidcapIn, &hrCrossbar);
+					if (pCCrossbar)
 					{
-						LONG lType;
-						hr = pCCrossbar->GetInputType(l, &lType);
-						if (SUCCEEDED(hr))
+						LONG lCount = 0;
+						hr = pCCrossbar->GetInputCount(&lCount);
+				
+						for (LONG l=0; l<lCount; ++l)
 						{
-							TCHAR buffer[256];
-							hr = pCCrossbar->GetInputName(l, buffer, 256);
+							LONG lType;
+							hr = pCCrossbar->GetInputType(l, &lType);
 							if (SUCCEEDED(hr))
 							{
-								long lIndex = SendDlgItemMessage(hwndDlg, IDC_VIDEOSOURCE,
-									CB_ADDSTRING,
-									0, (LPARAM)buffer);
-								if (CB_ERR != lIndex)
+								TCHAR buffer[256];
+								hr = pCCrossbar->GetInputName(l, buffer, 256);
+								if (SUCCEEDED(hr))
 								{
-									EnableWindow(GetDlgItem(hwndDlg, IDC_VIDEOSOURCE), TRUE);
-									SendDlgItemMessage(hwndDlg, IDC_VIDEOSOURCE,
-										CB_SETITEMDATA,
-										lIndex,
-										(LPARAM)l);
-
-									if (l == cam->uCrossbarInput)
+									long lIndex = SendDlgItemMessage(hwndDlg, IDC_VIDEOSOURCE,
+										CB_ADDSTRING,
+										0, (LPARAM)buffer);
+									if (CB_ERR != lIndex)
 									{
+										EnableWindow(GetDlgItem(hwndDlg, IDC_VIDEOSOURCE), TRUE);
 										SendDlgItemMessage(hwndDlg, IDC_VIDEOSOURCE,
-											CB_SETCURSEL, lIndex, 0);
-										SendDlgItemMessage(hwndDlg, IDC_VIDEOSOURCE,
-											CB_SETTOPINDEX, lIndex, 0);
+											CB_SETITEMDATA,
+											lIndex,
+											(LPARAM)l);
+
+										if (l == cam->uCrossbarInput)
+										{
+											SendDlgItemMessage(hwndDlg, IDC_VIDEOSOURCE,
+												CB_SETCURSEL, lIndex, 0);
+											SendDlgItemMessage(hwndDlg, IDC_VIDEOSOURCE,
+												CB_SETTOPINDEX, lIndex, 0);
+										}
 									}
 								}
-							}
 
-							if (l == cam->uCrossbarInput)
-							{
-								pCCrossbar->SetInputIndex(l);
-								//break;
+								if (l == cam->uCrossbarInput)
+								{
+									pCCrossbar->SetInputIndex(l);
+									//break;
+								}
 							}
 						}
+						delete pCCrossbar;
 					}
-					delete pCCrossbar;
+					pinVidcapIn->Release();
 				}
-				pinVidcapIn->Release();
-			}
 
-			// Check if there is a TV tuner
-			//
-			if (cam->pBuilder)
+				// Check if there is a TV tuner
+				//
+				if (cam->pBuilder)
+				{
+					IAMTVTuner* pTuner = NULL;
+					hr = cam->pBuilder->FindInterface(
+						&LOOK_UPSTREAM_ONLY,
+						NULL,
+						cam->pVidcap,
+						IID_IAMTVTuner,
+						(void**)&pTuner);
+					if (FAILED(hr))
+					{
+						EnableWindow(GetDlgItem(hwndDlg, IDC_BTNTVTUNER), FALSE);
+					}
+					else
+					{
+						EnableWindow(GetDlgItem(hwndDlg, IDC_BTNTVTUNER), TRUE);
+						pTuner->Release();
+					}
+				}
+			}
+			else
 			{
-				IAMTVTuner* pTuner = NULL;
-				hr = cam->pBuilder->FindInterface(
-					&LOOK_UPSTREAM_ONLY,
-					NULL,
-					cam->pVidcap,
-					IID_IAMTVTuner,
-					(void**)&pTuner);
-				if (FAILED(hr))
-				{
-					EnableWindow(GetDlgItem(hwndDlg, IDC_BTNTVTUNER), FALSE);
-				}
-				else
-				{
-					EnableWindow(GetDlgItem(hwndDlg, IDC_BTNTVTUNER), TRUE);
-					pTuner->Release();
-				}
+				EnableWindow(GetDlgItem(hwndDlg, IDC_VIDEOSOURCE), FALSE);
+				EnableWindow(GetDlgItem(hwndDlg, IDC_BTNTVTUNER), FALSE);
+				EnableWindow(GetDlgItem(hwndDlg, IDC_BTNVIDCAPPROPERTIES), FALSE);
+				EnableWindow(GetDlgItem(hwndDlg, IDC_BTNVIDEOFORMAT), FALSE);
 			}
 
 			// Set video device name

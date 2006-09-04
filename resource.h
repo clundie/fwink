@@ -133,6 +133,7 @@
 #define IDC_CUSTOMSIZEX                 1070
 #define IDC_BUTTON1                     1071
 #define IDC_OVLKEY_CHOOSE               1071
+#define IDC_FILE_DEVICE_BROWSE          1071
 #define IDC_BUTTON2                     1072
 #define IDC_FILEBROWSE_OVERLAY          1072
 #define IDC_OVERLAYFILE_CLEAR           1073
@@ -157,6 +158,9 @@
 #define IDC_CROP_HEIGHT                 1096
 #define IDC_VIDEO_DEVICE_NAME           1097
 #define IDC_COMBO_VIDEO_DEVICE          1098
+#define IDC_RADIO_DEVICE_FILE           1099
+#define IDC_RADIO_DEVICE_CAMERA         1100
+#define IDC_FILE_DEVICE_PATH            1101
 
 // Next default values for new objects
 // 
@@ -164,7 +168,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        119
 #define _APS_NEXT_COMMAND_VALUE         40004
-#define _APS_NEXT_CONTROL_VALUE         1099
+#define _APS_NEXT_CONTROL_VALUE         1102
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

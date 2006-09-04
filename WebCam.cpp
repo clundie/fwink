@@ -30,6 +30,8 @@ const unsigned WebCam::uMinTimeUnit = 0, WebCam::uMaxTimeUnit = 2;
 const unsigned WebCam::uMinImageSize = 0, WebCam::uMaxImageSize = 3;
 const unsigned WebCam::uMinFontSize = 1, WebCam::uMaxFontSize = 999;
 const unsigned WebCam::uMinSmooth = 0, WebCam::uMaxSmooth = 2;
+const unsigned WebCam::uMinDeviceType = WebCam::deviceType_camera,
+	WebCam::uMaxDeviceType = WebCam::deviceType_file;
 const TCHAR WebCam::szHomePageURL[] = TEXT("http://lundie.ca/fwink/version.php?version=0.9.9.3");
 const int WebCam::_expireTime =  1082174400;
 
@@ -74,7 +76,8 @@ WebCam::WebCam()
 	bCustomImageSize(false),
 	uCustomSizeX(320), uCustomSizeY(240),
 	bCrop(false),
-	uCropX(0), uCropY(0), uCropWidth(320), uCropHeight(240)
+	uCropX(0), uCropY(0), uCropWidth(320), uCropHeight(240),
+	uDeviceType(deviceType_camera)
 {
 	rgbForeground = RGB(255, 255, 128);
 	rgbBackground = RGB(96, 16, 16);
@@ -236,8 +239,19 @@ WebCam::~WebCam()
 	}
 
 	DeleteTempFile();
+	if (imageFile.get())
+	{
+		imageFile.reset();
+	}
+	if (imageFilePreview.get())
+	{
+		imageFilePreview.reset();
+	}
 	GdiplusShutdown(uGDIPlusToken);
-	ShutdownDirectShow();
+	if (uDeviceType == deviceType_camera)
+	{
+		ShutdownDirectShow();
+	}
 	CoUninitialize();
 
 	if (hbrSampleBackground)
@@ -306,6 +320,7 @@ WebCam::Start(void)
 	LoadSetting(L"CropHeight", &uCropHeight);
 	LoadSetting(L"CropEnable", &bCrop);
 	LoadSetting(L"devicePath", sDevicePath);
+	LoadSetting(L"deviceType", &uDeviceType);
 	
 	unsigned r, g, b;
 
@@ -341,6 +356,7 @@ WebCam::Start(void)
 	uImageSize = max(min(uImageSize, uMaxImageSize), uMinImageSize);
 	uFontSize = max(min(uFontSize, uMaxFontSize), uMinFontSize);
 	uSmoothType = max(min(uSmoothType, uMaxSmooth), uMinSmooth);
+	uDeviceType = max(min(uDeviceType, uMaxDeviceType), uMinDeviceType);
 
 	if ((uSmoothType == smooth_cleartype) && (!bClearTypeAvailable))
 		uSmoothType = smooth_standard;
@@ -348,7 +364,29 @@ WebCam::Start(void)
 	ApplyImageSize();
 	CreateMainDialog();
 	CreateNotificationIcon();
-	InitDirectShow();
+
+	if (uDeviceType == deviceType_camera)
+	{
+		try
+		{
+			InitDirectShow();
+		}
+		catch (int)
+		{
+			uDeviceType = deviceType_file;
+			sDevicePath = L"";
+			sDeviceName = L"";
+		}
+	}
+	else if (uDeviceType == deviceType_file)
+	{
+		sDeviceName = sDevicePath;
+		InitImageFile();
+	}
+	else
+	{
+		assert(false);
+	}
 
 	// Check if this is the first time the app has run.
 	{
