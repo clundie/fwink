@@ -32,7 +32,7 @@ const unsigned WebCam::uMinFontSize = 1, WebCam::uMaxFontSize = 999;
 const unsigned WebCam::uMinSmooth = 0, WebCam::uMaxSmooth = 2;
 const unsigned WebCam::uMinDeviceType = WebCam::deviceType_camera,
 	WebCam::uMaxDeviceType = WebCam::deviceType_file;
-const TCHAR WebCam::szHomePageURL[] = TEXT("http://lundie.ca/fwink/version.php?version=0.9.9.3");
+const TCHAR WebCam::szHomePageURL[] = TEXT("http://lundie.ca/fwink/version.php?version=0.9.94");
 const int WebCam::_expireTime =  1082174400;
 
 WebCam::WebCam()

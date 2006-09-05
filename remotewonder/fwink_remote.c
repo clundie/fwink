@@ -268,7 +268,6 @@ SetSoundOption(HWND hwndDlg, DWORD dwSound, BOOL bCheckButton)
 		case FWINK_SOUND_NONE:
 			if (bCheckButton)
 				CheckDlgButton(hwndDlg, IDC_SOUND_NONE, BST_CHECKED);
-			EnableWindow(GetDlgItem(hwndDlg, IDC_EDIT_SOUNDFILE), FALSE);
 			EnableWindow(GetDlgItem(hwndDlg, IDC_BTN_PLAYSOUND), FALSE);
 			EnableWindow(GetDlgItem(hwndDlg, IDC_BTN_BROWSE_SOUND), FALSE);
 			break;
@@ -276,7 +275,6 @@ SetSoundOption(HWND hwndDlg, DWORD dwSound, BOOL bCheckButton)
 		case FWINK_SOUND_CUSTOM:
 			if (bCheckButton)
 				CheckDlgButton(hwndDlg, IDC_SOUND_CUSTOM, BST_CHECKED);
-			EnableWindow(GetDlgItem(hwndDlg, IDC_EDIT_SOUNDFILE), TRUE);
 			EnableWindow(GetDlgItem(hwndDlg, IDC_BTN_PLAYSOUND), TRUE);
 			EnableWindow(GetDlgItem(hwndDlg, IDC_BTN_BROWSE_SOUND), TRUE);
 			break;
@@ -285,7 +283,6 @@ SetSoundOption(HWND hwndDlg, DWORD dwSound, BOOL bCheckButton)
 		default:
 			if (bCheckButton)
 				CheckDlgButton(hwndDlg, IDC_SOUND_DEFAULT, BST_CHECKED);
-			EnableWindow(GetDlgItem(hwndDlg, IDC_EDIT_SOUNDFILE), FALSE);
 			EnableWindow(GetDlgItem(hwndDlg, IDC_BTN_PLAYSOUND), FALSE);
 			EnableWindow(GetDlgItem(hwndDlg, IDC_BTN_BROWSE_SOUND), FALSE);
 	}

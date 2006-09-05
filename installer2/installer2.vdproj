@@ -406,14 +406,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Fwink"
-        "ProductCode" = "8:{97FCA4B8-D101-4723-8DA1-5F4514F2440C}"
-        "PackageCode" = "8:{DA924549-B218-4C88-941C-E89C64C60295}"
+        "ProductCode" = "8:{6AB1D57A-7D3D-4B65-AA87-3BB07D5DAB64}"
+        "PackageCode" = "8:{90B6A72A-EE73-4EA8-8AF6-6AE76F985759}"
         "UpgradeCode" = "8:{D2E7D926-1716-41FD-A2C4-4C9478F4293C}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.9.93"
+        "ProductVersion" = "8:0.9.94"
         "Manufacturer" = "8:Chris Lundie"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://lundie.ca/fwink/"
@@ -931,7 +931,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_408DCFD658B24CE4862F156E839C5449"
             {
-            "SourcePath" = "8:..\\remotewonder\\debug\\fwink_remote.dll"
+            "SourcePath" = "8:..\\remotewonder\\Debug\\fwink_remote.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4A4FBD439D1B4D4B922DA29C448941BB"
@@ -959,7 +959,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E3EA952F801143D5BCBA7DCF10B5B4AA"
             {
-            "SourcePath" = "8:..\\debug\\fwink.exe"
+            "SourcePath" = "8:..\\Debug\\fwink.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4A4FBD439D1B4D4B922DA29C448941BB"

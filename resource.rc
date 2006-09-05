@@ -27,8 +27,8 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_CAN
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,9,9,3
- PRODUCTVERSION 0,9,9,3
+ FILEVERSION 0,9,94,0
+ PRODUCTVERSION 0,9,94,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x2bL
@@ -46,14 +46,14 @@ BEGIN
             VALUE "Comments", " "
             VALUE "CompanyName", "Chris Lundie"
             VALUE "FileDescription", "Fwink"
-            VALUE "FileVersion", "0, 9, 9, 3"
+            VALUE "FileVersion", "0, 9, 94, 0"
             VALUE "InternalName", "fwink"
             VALUE "LegalCopyright", "Copyright © 2001-2006 Chris Lundie"
             VALUE "LegalTrademarks", " "
             VALUE "OriginalFilename", "fwink.exe"
             VALUE "PrivateBuild", " "
             VALUE "ProductName", "Fwink"
-            VALUE "ProductVersion", "0, 9, 9, 3"
+            VALUE "ProductVersion", "0, 9, 94, 0"
             VALUE "SpecialBuild", " "
         END
     END
@@ -109,7 +109,7 @@ BEGIN
     PUSHBUTTON      "Take a &Picture Now",IDC_BTNCAPTURE,144,54,96,18
     PUSHBUTTON      "Fwink &Home Page",IDC_BTNHOMEPAGE,144,78,96,18
     PUSHBUTTON      "E&xit",IDC_BTNEXIT,144,102,96,18
-    CTEXT           "Fwink 0.9.9.3 Copyright © 2001-2006 Chris Lundie",IDC_STATIC,12,138,228,12,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "Fwink 0.9.94 Copyright © 2001-2006 Chris Lundie",IDC_STATIC,12,138,228,12,SS_CENTERIMAGE | SS_SUNKEN
 END
 
 IDD_FTP DIALOGEX 0, 0, 388, 215

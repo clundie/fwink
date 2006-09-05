@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -21,15 +21,14 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_CAN
 #pragma code_page(1252)
 #endif //_WIN32
 
-#ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
 // Version
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,9,7,1
- PRODUCTVERSION 0,9,7,1
+ FILEVERSION 0,9,94,0
+ PRODUCTVERSION 0,9,94,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x29L
@@ -44,18 +43,18 @@ BEGIN
     BEGIN
         BLOCK "100904b0"
         BEGIN
-            VALUE "Comments", "Fwink Plug-in for ATI Remote Wonder\0"
-            VALUE "CompanyName", "Chris Lundie\0"
-            VALUE "FileDescription", "Fwink Plug-in for ATI Remote Wonder.\0"
-            VALUE "FileVersion", "0, 9, 7, 1\0"
-            VALUE "InternalName", "fwink_remote\0"
-            VALUE "LegalCopyright", "Copyright © 2003 Chris Lundie\0"
-            VALUE "LegalTrademarks", " \0"
-            VALUE "OriginalFilename", "fwink_remote.dll\0"
-            VALUE "PrivateBuild", " \0"
-            VALUE "ProductName", "Fwink\0"
-            VALUE "ProductVersion", "0, 9, 7, 1\0"
-            VALUE "SpecialBuild", " \0"
+            VALUE "Comments", "Fwink Plug-in for ATI Remote Wonder"
+            VALUE "CompanyName", "Chris Lundie"
+            VALUE "FileDescription", "Fwink Plug-in for ATI Remote Wonder."
+            VALUE "FileVersion", "0, 9, 94, 0"
+            VALUE "InternalName", "fwink_remote"
+            VALUE "LegalCopyright", "Copyright © 2003-2006 Chris Lundie"
+            VALUE "LegalTrademarks", " "
+            VALUE "OriginalFilename", "fwink_remote.dll"
+            VALUE "PrivateBuild", " "
+            VALUE "ProductName", "Fwink"
+            VALUE "ProductVersion", "0, 9, 94, 0"
+            VALUE "SpecialBuild", " "
         END
     END
     BLOCK "VarFileInfo"
@@ -64,8 +63,6 @@ BEGIN
     END
 END
 
-#endif    // !_MAC
-
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -73,18 +70,18 @@ END
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE 
 BEGIN
     "\r\n"
     "\0"
@@ -98,23 +95,20 @@ END
 // Dialog
 //
 
-IDD_CONFIGURE DIALOG DISCARDABLE  0, 0, 148, 113
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+IDD_CONFIGURE DIALOGEX 0, 0, 148, 113
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Fwink Plug-In for ATI Remote Wonder"
-FONT 8, "MS Shell Dlg"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     GROUPBOX        "Sound",IDC_STATIC,6,6,138,84
-    CONTROL         "&No sound",IDC_SOUND_NONE,"Button",BS_AUTORADIOBUTTON | 
-                    WS_GROUP,12,18,54,12
-    CONTROL         "&Windows default beep",IDC_SOUND_DEFAULT,"Button",
-                    BS_AUTORADIOBUTTON,12,30,96,12
-    CONTROL         "Sound &File:",IDC_SOUND_CUSTOM,"Button",
-                    BS_AUTORADIOBUTTON,12,42,66,12
-    EDITTEXT        IDC_EDIT_SOUNDFILE,24,54,114,12,ES_AUTOHSCROLL
+    CONTROL         "&No sound",IDC_SOUND_NONE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,12,18,54,12
+    CONTROL         "&Windows default beep",IDC_SOUND_DEFAULT,"Button",BS_AUTORADIOBUTTON,12,30,96,12
+    CONTROL         "Sound &File:",IDC_SOUND_CUSTOM,"Button",BS_AUTORADIOBUTTON,12,42,66,12
     PUSHBUTTON      "&Play",IDC_BTN_PLAYSOUND,36,72,48,12
     PUSHBUTTON      "&Browse...",IDC_BTN_BROWSE_SOUND,90,72,48,12
     DEFPUSHBUTTON   "OK",IDOK,42,96,48,12
     PUSHBUTTON      "Cancel",IDCANCEL,96,96,48,12
+    LTEXT           "(None)",IDC_EDIT_SOUNDFILE,24,54,114,12,SS_CENTERIMAGE | SS_SUNKEN | SS_PATHELLIPSIS
 END
 
 
@@ -124,7 +118,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
+GUIDELINES DESIGNINFO 
 BEGIN
     IDD_CONFIGURE, DIALOG
     BEGIN
