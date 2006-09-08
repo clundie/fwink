@@ -378,7 +378,10 @@ WebCam::UploadImage(void)
 		}
 		else if (uDeviceType == deviceType_file)
 		{
-			image = imageFile->Clone();
+			if (imageFile.get())
+			{
+				image = imageFile->Clone();
+			}
 		}
 
 		if (image && (Ok == image->GetLastStatus()))
