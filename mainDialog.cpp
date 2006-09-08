@@ -240,18 +240,18 @@ WebCam::DialogProcMain(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			//
 			SetWindowLongPtr(hwndDlg, GWLP_USERDATA, lParam);
 
-      // Set dialog icon
-      //
+			// Set dialog icon
+			//
 			SetClassLongPtr(hwndDlg, GCLP_HICONSM,
-											reinterpret_cast<LONG_PTR>(LoadImage(GetModuleHandle(NULL),
-												MAKEINTRESOURCE(IDI_APPICON), IMAGE_ICON,
-												GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON),
-												LR_DEFAULTCOLOR)));
+				reinterpret_cast<LONG_PTR>(LoadImage(GetModuleHandle(NULL),
+				MAKEINTRESOURCE(IDI_APPICON), IMAGE_ICON,
+				GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON),
+				LR_DEFAULTCOLOR)));
 			SetClassLongPtr(hwndDlg, GCLP_HICON,
-											reinterpret_cast<LONG_PTR>(LoadImage(GetModuleHandle(NULL),
-												MAKEINTRESOURCE(IDI_APPICON), IMAGE_ICON,
-												GetSystemMetrics(SM_CXICON), GetSystemMetrics(SM_CYICON),
-												LR_DEFAULTCOLOR)));
+				reinterpret_cast<LONG_PTR>(LoadImage(GetModuleHandle(NULL),
+				MAKEINTRESOURCE(IDI_APPICON), IMAGE_ICON,
+				GetSystemMetrics(SM_CXICON), GetSystemMetrics(SM_CYICON),
+				LR_DEFAULTCOLOR)));
 
 			break;
 		}
@@ -264,7 +264,7 @@ WebCam::DialogProcMain(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			break;
 		}
 
-    default:
+	default:
 		{
 			if (uMsg == cam->uTaskbarRestart)
 			{
@@ -282,9 +282,9 @@ WebCam::DialogProcMain(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				break;
 			}
 
-      return FALSE;
+			return FALSE;
 		}
-  }
+	}
 
-  return TRUE;
+	return TRUE;
 }

@@ -21,12 +21,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_198CE9267A8B42E3D7045C91F2BE6420"
-        "OwnerKey" = "8:_E3EA952F801143D5BCBA7DCF10B5B4AA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_408DCFD658B24CE4862F156E839C5449"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -47,12 +41,6 @@
         {
         "MsmKey" = "8:_B5AEE13F12A7FD636E7AE7A4D3CB6523"
         "OwnerKey" = "8:_408DCFD658B24CE4862F156E839C5449"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B5AEE13F12A7FD636E7AE7A4D3CB6523"
-        "OwnerKey" = "8:_E3EA952F801143D5BCBA7DCF10B5B4AA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -184,26 +172,6 @@
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_198CE9267A8B42E3D7045C91F2BE6420"
-            {
-            "SourcePath" = "8:RASAPI32.dll"
-            "TargetName" = "8:RASAPI32.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_4A4FBD439D1B4D4B922DA29C448941BB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6FA2315C516D4F55818F7467AF1E7167"
@@ -406,14 +374,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Fwink"
-        "ProductCode" = "8:{6AB1D57A-7D3D-4B65-AA87-3BB07D5DAB64}"
-        "PackageCode" = "8:{90B6A72A-EE73-4EA8-8AF6-6AE76F985759}"
+        "ProductCode" = "8:{76CA4510-53FE-4A9A-883A-B291404B84AB}"
+        "PackageCode" = "8:{0DEB94EF-36C8-47FD-AD4A-E4B4836EACD7}"
         "UpgradeCode" = "8:{D2E7D926-1716-41FD-A2C4-4C9478F4293C}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.9.94"
+        "ProductVersion" = "8:0.9.95"
         "Manufacturer" = "8:Chris Lundie"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://lundie.ca/fwink/"
