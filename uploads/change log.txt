@@ -1,3 +1,9 @@
+0.9.95:
+
+* Bug fix: Allow user to select video capture device
+when multiple devices are present.
+* New feature: Use an image file instead of a camera.
+
 0.9.9.2:
 
 * Added timeouts to FTP connection to prevent getting stuck.

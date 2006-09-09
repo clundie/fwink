@@ -1,17 +1,9 @@
-MS Installer:
-Fwink is distributed as a MS Installer package. If Fwink will not install
-when you double-click the .msi file, you need to update your system.
+Installing:
 
-MS Installer for Windows 98 and ME:
-http://www.microsoft.com/downloads/release.asp?ReleaseID=32831
+Fwink is now distributed as an EXE file that installs itself.
+It will remove previous versions of Fwink for you.
 
-MS Installer for Windows 2000:
-http://www.microsoft.com/downloads/release.asp?ReleaseID=32832
+Source code:
 
-Fwink Files:
-
-Fwink MS Installer package (binary):
-fwink-0.9.9.2.msi
-
-Fwink source code:
-fwink-0.9.9.2.src.zip
+The source code is available from a Subversion repository here:
+http://sourceforge.net/svn/?group_id=40989
