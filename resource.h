@@ -67,6 +67,7 @@
 #define ERR_EXPIRED                     63
 #define ERR_CREATE_CHOOSE_VIDEO_DEVICE_DIALOG 64
 #define IDS_DEVICE_CHANGED_TITLE        65
+#define STATUS_FTP_TIMEOUT              66
 #define IDD_MAIN                        101
 #define IDI_APPICON                     102
 #define IDD_FTP                         107

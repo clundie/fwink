@@ -219,6 +219,8 @@ WebCam::ChangeVidcapProperties(const HWND hwndParent, const bool bShowErrors)
 void
 WebCam::UploadImage(void)
 {
+	::KillTimer(hwndMain, uCancelFtpTimerID);
+
 	if (hFTP)
 	{
 		InternetCloseHandle(hFTP);

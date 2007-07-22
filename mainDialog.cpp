@@ -154,8 +154,35 @@ WebCam::DialogProcMain(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 		case WM_TIMER:
 		{
-			if ((wParam == cam->uTimerID) && !(cam->bDisableTimer))
-				cam->CaptureFrame();
+			if (wParam == cam->uCancelFtpTimerID)
+			{
+				::KillTimer(cam->hwndMain, cam->uCancelFtpTimerID);
+				if (cam->hFTP)
+				{
+					::InternetCloseHandle(cam->hFTP);
+					cam->hFTP = NULL;
+					cam->SetStatus(STATUS_FTP_TIMEOUT);
+				}
+				cam->bOKToDeleteTempFile = true;
+				if (cam->bOneShot)
+				{
+					SendMessage(cam->hwndMain, cam->uQuitMessage, 0, 0);
+				}
+				else
+				{
+					if (!cam->bDisableTimer)
+					{
+						cam->CaptureFrame();
+					}
+				}
+			}
+			else if ((wParam == cam->uTimerID) && !(cam->bDisableTimer))
+			{
+				if (!cam->hFTP && (cam->iStatus != STATUS_CONNECTING))
+				{
+					cam->CaptureFrame();
+				}
+			}
 			break;
 		}
 

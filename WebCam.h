@@ -209,7 +209,8 @@ public:
 	bool bPassiveFTP;
 	static const unsigned uMaxTimeValue, uMinTimeValue;
 	static const unsigned uMinTimeUnit, uMaxTimeUnit;
-	const UINT_PTR uTimerID;
+	const UINT_PTR uTimerID, uCancelFtpTimerID;
+	UINT uCancelFtpTimerMilliseconds;
 	bool bBalloonTips;
 	bool bRunAtStartup;
 	static const UINT uCaptureMessage;

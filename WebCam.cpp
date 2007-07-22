@@ -1,6 +1,6 @@
 /*
 
-Copyright (c) 2001-2006 Chris Lundie
+Copyright (c) 2001-2007 Chris Lundie
 http://lundie.ca/
 
 This file is part of Fwink.
@@ -32,7 +32,7 @@ const unsigned WebCam::uMinFontSize = 1, WebCam::uMaxFontSize = 999;
 const unsigned WebCam::uMinSmooth = 0, WebCam::uMaxSmooth = 2;
 const unsigned WebCam::uMinDeviceType = WebCam::deviceType_camera,
 WebCam::uMaxDeviceType = WebCam::deviceType_file;
-const TCHAR WebCam::szHomePageURL[] = TEXT("http://lundie.ca/fwink/version.php?version=0.9.95");
+const TCHAR WebCam::szHomePageURL[] = TEXT("http://lundie.ca/fwink/version.php?version=1.0.96");
 const int WebCam::_expireTime = 1082174400;
 
 WebCam::WebCam()
@@ -44,7 +44,8 @@ WebCam::WebCam()
 	uTimeValue(1), uTimeUnit(timeunit_minutes),
 	sServer(L""),sUsername(L""),sPassword(L""),sDirectory(L""),sFilename(L"webcam.jpg"),
 	sWisdom(L""),
-	uTimerID(1),
+	uTimerID(1), uCancelFtpTimerID(2),
+	uCancelFtpTimerMilliseconds(60000),
 	bRunAtStartup(false), bTimestamp(true), bDatestamp(true),
 	pGraph(NULL), pVidcap(NULL), pSampleGrabber(NULL),
 	pNullRenderer(NULL), pBuilder(NULL),
@@ -482,7 +483,8 @@ WebCam::SetStatus(int iStatus)
 		bReadyToUpload = false;
 	}
 	else if ((iStatus == ERR_UPLOAD) || (iStatus == SUCCESS_UPLOADED_IMAGE)
-			|| (iStatus == ERR_CONNECT) || (iStatus == ERR_UPLOAD_DIRECTORY))
+			|| (iStatus == ERR_CONNECT) || (iStatus == ERR_UPLOAD_DIRECTORY)
+			|| (iStatus == STATUS_FTP_TIMEOUT))
 	{
 		EnableWindow(GetDlgItem(hwndMain, IDC_BTNCAPTURE), TRUE);
 		bReadyToUpload = true;

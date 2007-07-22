@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_32626C555AFEECD344CE99DC330453F2"
+        "OwnerKey" = "8:_408DCFD658B24CE4862F156E839C5449"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_408DCFD658B24CE4862F156E839C5449"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -39,8 +45,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B5AEE13F12A7FD636E7AE7A4D3CB6523"
-        "OwnerKey" = "8:_408DCFD658B24CE4862F156E839C5449"
+        "MsmKey" = "8:_B8EF06E657E1B75495F917485148CEBF"
+        "OwnerKey" = "8:_E3EA952F801143D5BCBA7DCF10B5B4AA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -59,12 +65,6 @@
         {
         "MsmKey" = "8:_E3EA952F801143D5BCBA7DCF10B5B4AA"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E71B8E4466D6318E3EBACD714107DA5B"
-        "OwnerKey" = "8:_E3EA952F801143D5BCBA7DCF10B5B4AA"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -174,6 +174,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_32626C555AFEECD344CE99DC330453F2"
+            {
+            "SourcePath" = "8:comdlg32.dll"
+            "TargetName" = "8:comdlg32.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_4A4FBD439D1B4D4B922DA29C448941BB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6FA2315C516D4F55818F7467AF1E7167"
             {
             "SourcePath" = "8:..\\COPYING.txt"
@@ -214,10 +234,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B5AEE13F12A7FD636E7AE7A4D3CB6523"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B8EF06E657E1B75495F917485148CEBF"
             {
-            "SourcePath" = "8:comdlg32.dll"
-            "TargetName" = "8:comdlg32.dll"
+            "SourcePath" = "8:WININET.dll"
+            "TargetName" = "8:WININET.dll"
             "Tag" = "8:"
             "Folder" = "8:_4A4FBD439D1B4D4B922DA29C448941BB"
             "Condition" = "8:"
@@ -272,26 +292,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E71B8E4466D6318E3EBACD714107DA5B"
-            {
-            "SourcePath" = "8:WININET.dll"
-            "TargetName" = "8:WININET.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_4A4FBD439D1B4D4B922DA29C448941BB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
         }
@@ -374,14 +374,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Fwink"
-        "ProductCode" = "8:{76CA4510-53FE-4A9A-883A-B291404B84AB}"
-        "PackageCode" = "8:{0DEB94EF-36C8-47FD-AD4A-E4B4836EACD7}"
+        "ProductCode" = "8:{3DDA11A1-6C27-4469-998B-944DEA22CBD8}"
+        "PackageCode" = "8:{0DC349DB-209A-4657-AB6D-3536AF86BEE0}"
         "UpgradeCode" = "8:{D2E7D926-1716-41FD-A2C4-4C9478F4293C}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.9.95"
+        "ProductVersion" = "8:1.0.96"
         "Manufacturer" = "8:Chris Lundie"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://lundie.ca/fwink/"
@@ -899,7 +899,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_408DCFD658B24CE4862F156E839C5449"
             {
-            "SourcePath" = "8:..\\remotewonder\\Debug\\fwink_remote.dll"
+            "SourcePath" = "8:..\\remotewonder\\Release\\fwink_remote.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4A4FBD439D1B4D4B922DA29C448941BB"
@@ -927,7 +927,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E3EA952F801143D5BCBA7DCF10B5B4AA"
             {
-            "SourcePath" = "8:..\\Debug\\fwink.exe"
+            "SourcePath" = "8:..\\Release\\fwink.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4A4FBD439D1B4D4B922DA29C448941BB"

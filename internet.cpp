@@ -51,6 +51,8 @@ WebCam::InternetStatusCallback(
 						//
 						cam->hFTP = hFTP;
 						cam->SetStatus(STATUS_CHDIR);
+						::SetTimer(cam->hwndMain, cam->uCancelFtpTimerID,
+							cam->uCancelFtpTimerMilliseconds, (TIMERPROC)NULL);
 
 						// Change directory
 						//
